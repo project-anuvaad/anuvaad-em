@@ -1,11 +1,10 @@
 from distutils.core import setup
 
-long_description = "A package to standardize and manage errors in anuvaad dataflow pipeline by Tarento Technologies \n" \
-                   "Visit the following repo for more details: " \
-                   "https://github.com/project-anuvaad/anuvaad/tree/wfmanager_feature/anuvaad-etl/anuvaad-telemetry/error \n"
+long_description = "A package to standardize and manage errors in anuvaad dataflow pipeline by EkStep \n" \
+                   "Visit the following repo for more details: https://github.com/project-anuvaad/anuvaad-em"
 
 setup(
-  name = 'anuvaad_em',         # How you named your package folder (MyLib)
+  name = 'anuvaad_em',         # How you named your package folder
   packages = ['anuvaad_em'],   # Chose the same as "name"
   version = '0.0.1',      # Start with a small number and increase it with every change you make
   license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
@@ -13,8 +12,8 @@ setup(
   author = 'Vishal Mahuli',                   # Type in your name
   author_email = 'vishal.mahuli@tarento.com',      # Type in your E-Mail
   url = 'https://www.tarento.com',   # Provide either the link to your github or to your website
-  download_url = 'https://github.com/mahulivishal/anuvaad_error_manager/archive/0.0.3.tar.gz',    # Release source.tar.gz asset
-  keywords = ['ANUVAAD', 'ERROR', 'MANAGER', 'TARENTO'],   # Keywords that define your package best
+  download_url = 'https://github.com/project-anuvaad/anuvaad-em/archive/0.0.1.tar.gz',    # Release source.tar.gz asset
+  keywords = ['ANUVAAD', 'ERROR', 'MANAGER', 'TARENTO', 'EKSTEP', 'SUVAAS'],   # Keywords that define your package best
   long_description=long_description,
   install_requires=[            # Packages to be explicitly installed ONLY. (No inbuilt py packages)
           'kafka',
