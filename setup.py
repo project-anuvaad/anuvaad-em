@@ -13,7 +13,7 @@ setup(
   author = 'Vishal Mahuli',                   # Type in your name
   author_email = 'vishal.mahuli@tarento.com',      # Type in your E-Mail
   url = 'https://www.tarento.com',   # Provide either the link to your github or to your website
-  download_url = 'https://github.com/project-anuvaad/anuvaad-em/archive/0.0.1.tar.gz',    # Release source.tar.gz asset
+  download_url = 'https://github.com/project-anuvaad/anuvaad-em/archive/1.0.0.tar.gz',    # Release source.tar.gz asset
   keywords = ['ANUVAAD', 'ERROR', 'MANAGER', 'TARENTO', 'EKSTEP', 'SUVAAS', 'AUDIT', 'LOG', 'INDEX'],   # Keywords that define your package best
   long_description=long_description,
   install_requires=[            # Packages to be explicitly installed ONLY. (No inbuilt py packages)
