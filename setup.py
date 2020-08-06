@@ -7,7 +7,7 @@ long_description = "A package to standardize and manage errors in anuvaad datafl
 setup(
   name = 'anuvaad_auditor',         # How you named your package folder
   packages = ['anuvaad_auditor'],   # Chose the same as "name"
-  version = '0.0.1',      # Start with a small number and increase it with every change you make
+  version = '0.0.2',      # Start with a small number and increase it with every change you make
   license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
   description = 'A package to standardize and manage audit details and errors in anuvaad dataflow pipeline',   # Give a short description about your library
   author = 'Vishal Mahuli',                   # Type in your name
