@@ -28,10 +28,10 @@ def post_error(code, message, cause):
         if cause is not None:
             error["cause"] = cause
         index_error_to_es(error)
-        log_info("Error posted to the es index.", None)
+        log_info("post_error", "Error posted to the es index.", None)
         return error
     except Exception as e:
-        log_exception("Error Handler Failed.", None, e)
+        log_exception("post_error", "Error Handler Failed.", None, e)
         return None
 
 
@@ -59,14 +59,13 @@ def post_error_wf(code, message, jobId, taskId, state, status, cause):
         if cause is not None:
             error["cause"] = cause
         push_to_queue(error, anu_etl_wf_error_topic)
-        log_info("Error pushed to the wf error topic.", None)
+        log_info("post_error_wf", "Error pushed to the wf error topic.", None)
         index_error_to_es(error)
-        log_info("Error posted to the es index.", None)
+        log_info("post_error_wf", "Error posted to the es index.", None)
         return error
     except Exception as e:
-        log_exception("Error Handler WF Failed.", None, e)
+        log_exception("post_error_wf", "Error Handler WF Failed.", None, e)
         return None
-
 
 
 # Method to generate error ID.
