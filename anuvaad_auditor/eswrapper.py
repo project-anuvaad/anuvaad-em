@@ -3,19 +3,18 @@ import os
 from datetime import datetime
 
 from elasticsearch import Elasticsearch
+from .config import es_url
+from .loghandler import log_exception
 
 log = logging.getLogger('file')
 
-es_url = os.environ.get('ES_URL', 'http://172.30.0.55:9200')
 
 es_error_index_test = "anuvaad-etl-errors-test-v1"
 es_core_error_index = "anuvaad-etl-errors-core-v1"
 es_wf_error_index = "anuvaad-etl-errors-wf-v1"
-es_error_type = "errors"
 
 es_audit_index_test = "anuvaad-etl-audit-test-v1"
 es_audit_error_index = "anuvaad-etl-audit-v1"
-es_audit_type = "logs"
 
 
 # Method to instantiate the elasticsearch client.
@@ -34,9 +33,10 @@ def index_error_to_es(index_obj):
         else:
             in_name = es_wf_error_index
         index_obj = add_timestamp_field(index_obj)
-        es.index(index=in_name, doc_type=es_error_type, id=id, body=index_obj)
+        es.index(index=in_name, id=id, body=index_obj)
     except Exception as e:
-        log.exception("Indexing FAILED for errorID: " + index_obj["errorID"])
+        log_exception("index_error_to_es",
+                      "Indexing FAILED for errorID: " + index_obj["errorID"], index_obj["errorID"], e)
 
 
 # Method to index audit details onto elasticsearch
@@ -45,9 +45,10 @@ def index_audit_to_es(index_obj):
         es = instantiate_es_client()
         id = index_obj["auditID"]
         index_obj = add_timestamp_field(index_obj)
-        es.index(index=es_audit_error_index, doc_type=es_audit_type, id=id, body=index_obj)
+        es.index(index=es_audit_error_index, id=id, body=index_obj)
     except Exception as e:
-        log.exception("Indexing FAILED for errorID: " + index_obj["errorID"])
+        log_exception("index_error_to_es",
+                      "Indexing FAILED for errorID: " + index_obj["auditID"], index_obj["auditID"], e)
 
 
 # Method to generate timestamp in the format es expects per index object.

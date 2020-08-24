@@ -1,15 +1,14 @@
 import logging
 import time
 import uuid
-import os
 
 from .kfproducer import push_to_queue
 from .eswrapper import index_error_to_es
 from .loghandler import log_info
 from .loghandler import log_exception
+from .config import anu_etl_wf_error_topic
 
 log = logging.getLogger('file')
-anu_etl_wf_error_topic = os.environ.get('ANU_ETL_WF_ERROR_TOPIC', 'anuvaad-etl-wf-errors')
 
 
 # Method to standardize and index errors for the core flow

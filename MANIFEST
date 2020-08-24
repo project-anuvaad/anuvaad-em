@@ -2,6 +2,7 @@
 setup.cfg
 setup.py
 anuvaad_auditor\__init__.py
+anuvaad_auditor\config.py
 anuvaad_auditor\errorhandler.py
 anuvaad_auditor\eswrapper.py
 anuvaad_auditor\kfproducer.py
