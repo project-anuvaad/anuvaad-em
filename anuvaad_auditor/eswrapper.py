@@ -3,7 +3,6 @@ from datetime import datetime
 
 from elasticsearch import Elasticsearch
 from .config import es_url
-from .loghandler import log_exception
 
 log = logging.getLogger('file')
 
