@@ -12,7 +12,7 @@ from .config import es_url
 # entity_id: Any ID that can be used for co-relation. jobID in case of wf, unique Ids in case of normal flow.
 def log_info(method, message, entity_id):
     log.info(message)
-    if es_url == 'localhost':
+    if es_url != 'localhost':
         try:
             audit = {
                 "auditID": generate_error_id(),
@@ -36,7 +36,7 @@ def log_info(method, message, entity_id):
 # entity_id: Any ID that can be used for co-relation. jobID in case of wf, unique Ids in case of normal flow.
 def log_debug(method, message, entity_id):
     log.debug(message)
-    if es_url == 'localhost':
+    if es_url != 'localhost':
         try:
             audit = {
                 "auditID": generate_error_id(),
@@ -62,7 +62,7 @@ def log_debug(method, message, entity_id):
 # exc: Exception object
 def log_exception(method, message, entity_id, exc):
     log.exception(message)
-    if es_url == 'localhost':
+    if es_url != 'localhost':
         try:
             audit = {
                 "auditID": generate_error_id(),
@@ -90,7 +90,7 @@ def log_exception(method, message, entity_id, exc):
 # exc: Exception object
 def log_error(method, message, entity_id, exc):
     log.error(message)
-    if es_url == 'localhost':
+    if es_url != 'localhost':
         try:
             audit = {
                 "auditID": generate_error_id(),
