@@ -7,13 +7,13 @@ long_description = "A package to standardize and manage errors in anuvaad datafl
 setup(
   name = 'anuvaad_auditor',         # How you named your package folder
   packages = ['anuvaad_auditor'],   # Chose the same as "name"
-  version = '0.0.5',      # Start with a small number and increase it with every change you make
+  version = '0.0.6',      # Start with a small number and increase it with every change you make
   license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
   description = 'A package to standardize and manage audit details and errors in anuvaad dataflow pipeline',   # Give a short description about your library
   author = 'Vishal Mahuli',                   # Type in your name
   author_email = 'vishal.mahuli@tarento.com',      # Type in your E-Mail
   url = 'https://www.tarento.com',   # Provide either the link to your github or to your website
-  download_url = 'https://github.com/project-anuvaad/anuvaad-em/archive/5.0.0.tar.gz',    # Release source.tar.gz asset
+  download_url = 'https://github.com/project-anuvaad/anuvaad-em/archive/6.0.0.tar.gz',    # Release source.tar.gz asset
   keywords = ['ANUVAAD', 'ERROR', 'MANAGER', 'TARENTO', 'EKSTEP', 'SUVAAS', 'AUDIT', 'LOG', 'INDEX'],   # Keywords that define your package best
   long_description=long_description,
   install_requires=[            # Packages to be explicitly installed ONLY. (No inbuilt py packages)
