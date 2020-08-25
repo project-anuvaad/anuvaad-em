@@ -47,9 +47,8 @@ def index_audit_to_es(index_obj):
 
 # Method to generate timestamp in the format es expects per index object.
 def add_timestamp_field(error):
-    date_format = "%Y-%m-%d'T'%H:%M:%S.%f'Z'"
+    #date_format = "%Y-%m-%d'T'%H:%M:%S.%f'Z'"
     epoch = error["timeStamp"]
     epoch_short = eval((str(epoch)[:10]))
-    final_date = datetime.fromtimestamp(epoch_short).strftime(date_format)
-    error["@timestamp"] = final_date
+    error["@timestamp"] = datetime.fromtimestamp(epoch_short).isoformat()
     return error
