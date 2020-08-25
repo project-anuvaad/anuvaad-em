@@ -7,13 +7,17 @@ from .eswrapper import index_audit_to_es
 
 log = logging.getLogger('file')
 from .config import es_url
+from .config import is_info_enabled
+from .config import is_debug_enabled
+from .config import is_error_enabled
+from .config import is_exc_enabled
 
 # Method to log and index INFO level logs
 # message: The message to be logged
 # entity_id: Any ID that can be used for co-relation. jobID in case of wf, unique Ids in case of normal flow.
 def log_info(message, entity):
     log.info(message)
-    if es_url != 'localhost':
+    if es_url != 'localhost' and is_info_enabled:
         try:
             previous_frame = inspect.currentframe().f_back
             (filename, line_number,
@@ -41,7 +45,7 @@ def log_info(message, entity):
 # entity_id: Any ID that can be used for co-relation. jobID in case of wf, unique Ids in case of normal flow.
 def log_debug(message, entity):
     log.debug(message)
-    if es_url != 'localhost':
+    if es_url != 'localhost' and is_debug_enabled:
         try:
             previous_frame = inspect.currentframe().f_back
             (filename, line_number,
@@ -71,7 +75,7 @@ def log_debug(message, entity):
 # exc: Exception object
 def log_exception(message, entity, exc):
     log.exception(message)
-    if es_url != 'localhost':
+    if es_url != 'localhost' and is_exc_enabled:
         try:
             previous_frame = inspect.currentframe().f_back
             (filename, line_number,
@@ -103,7 +107,7 @@ def log_exception(message, entity, exc):
 # exc: Exception object
 def log_error(message, entity, exc):
     log.error(message)
-    if es_url != 'localhost':
+    if es_url != 'localhost' and is_error_enabled:
         try:
             previous_frame = inspect.currentframe().f_back
             (filename, line_number,
