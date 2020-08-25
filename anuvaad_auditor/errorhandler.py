@@ -25,7 +25,7 @@ def post_error(code, message, cause):
             "errorType": "core-error"
         }
         if cause is not None:
-            error["cause"] = cause
+            error["cause"] = str(cause)
         index_error_to_es(error)
         log_info("Error posted to the es index.", None)
         return error
@@ -56,7 +56,7 @@ def post_error_wf(code, message, entity, cause):
             "errorType": "wf-error"
         }
         if cause is not None:
-            error["cause"] = cause
+            error["cause"] = str(cause)
         if entity["status"]:
             error["status"] = entity["status"]
         if entity["metadata"] is not None:
