@@ -3,17 +3,15 @@ from datetime import datetime
 
 from elasticsearch import Elasticsearch
 from .config import es_url
+from .config import es_core_error_index
+from .config import es_wf_error_index
+from .config import es_audit_index
 
 log = logging.getLogger('file')
 
-
-es_error_index_test = "anuvaad-etl-errors-test-v1"
-es_core_error_index = "anuvaad-etl-errors-core-v1"
-es_wf_error_index = "anuvaad-etl-errors-wf-v1"
-
+es_core_error_index_test = "anuvaad-etl-core-errors-test-v1"
+es_wf_error_index_test = "anuvaad-etl-wf-errors-test-v1"
 es_audit_index_test = "anuvaad-etl-audit-test-v1"
-es_audit_error_index = "anuvaad-etl-audit-v1"
-
 
 # Method to instantiate the elasticsearch client.
 def instantiate_es_client():
@@ -42,7 +40,7 @@ def index_audit_to_es(index_obj):
         es = instantiate_es_client()
         id = index_obj["auditID"]
         index_obj = add_timestamp_field(index_obj)
-        es.index(index=es_audit_error_index, id=id, body=index_obj)
+        es.index(index=es_audit_index, id=id, body=index_obj)
     except Exception as e:
         log.exception("Indexing FAILED for errorID: " + index_obj["auditID"], e)
 

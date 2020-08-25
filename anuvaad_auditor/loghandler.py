@@ -32,31 +32,35 @@ def log_info(message, entity):
                 audit = audit_enriched
             index_audit_to_es(audit)
         except Exception as e:
-            log.exception("Anuvaad Auditor INFO failed.")
+            log.exception("Anuvaad Auditor INFO failed.", e)
             return None
 
 
 # Method to log and index DEBUG level logs
 # message: The message to be logged
 # entity_id: Any ID that can be used for co-relation. jobID in case of wf, unique Ids in case of normal flow.
-def log_debug(method, message, entity_id):
+def log_debug(message, entity):
     log.debug(message)
     if es_url != 'localhost':
         try:
+            previous_frame = inspect.currentframe().f_back
+            (filename, line_number,
+             function_name, lines, index) = inspect.getframeinfo(previous_frame)
             audit = {
                 "auditID": generate_error_id(),
-                "method_name": method,
-                "message": message,
+                "methodName": function_name,
+                "fileName": filename,
+                "lineNo": line_number,
+                "message": str(message),
                 "timeStamp": eval(str(time.time()).replace('.', '')),
                 "auditType": "DEBUG"
             }
-            if entity_id is None:
-                audit["corelationId"] = "CO-ID-NA"
-            else:
-                audit["corelationId"] = entity_id
+            audit_enriched = enrich_entity_details(audit, entity)
+            if audit_enriched is not None:
+                audit = audit_enriched
             index_audit_to_es(audit)
         except Exception as e:
-            log.exception("Anuvaad Auditor DEBUG failed.")
+            log.exception("Anuvaad Auditor DEBUG failed.", e)
             return None
 
 
@@ -65,26 +69,30 @@ def log_debug(method, message, entity_id):
 # message: The message to be logged
 # entity_id: Any ID that can be used for co-relation. jobID in case of wf, unique Ids in case of normal flow.
 # exc: Exception object
-def log_exception(method, message, entity_id, exc):
+def log_exception(message, entity, exc):
     log.exception(message)
     if es_url != 'localhost':
         try:
+            previous_frame = inspect.currentframe().f_back
+            (filename, line_number,
+             function_name, lines, index) = inspect.getframeinfo(previous_frame)
             audit = {
                 "auditID": generate_error_id(),
-                "method_name": method,
-                "message": message,
+                "methodName": function_name,
+                "fileName": filename,
+                "lineNo": line_number,
+                "message": str(message),
                 "timeStamp": eval(str(time.time()).replace('.', '')),
                 "auditType": "EXCEPTION"
             }
-            if entity_id is None:
-                audit["corelationId"] = "CO-ID-NA"
-            else:
-                audit["corelationId"] = entity_id
+            audit_enriched = enrich_entity_details(audit, entity)
+            if audit_enriched is not None:
+                audit = audit_enriched
             if exc is not None:
                 audit["cause"] = str(exc)
             index_audit_to_es(audit)
         except Exception as e:
-            log.exception("Anuvaad Auditor EXCEPTION failed.")
+            log.exception("Anuvaad Auditor EXCEPTION failed.", e)
             return None
 
 
@@ -93,26 +101,30 @@ def log_exception(method, message, entity_id, exc):
 # message: The message to be logged
 # entity_id: Any ID that can be used for co-relation. jobID in case of wf, unique Ids in case of normal flow.
 # exc: Exception object
-def log_error(method, message, entity_id, exc):
+def log_error(message, entity, exc):
     log.error(message)
     if es_url != 'localhost':
         try:
+            previous_frame = inspect.currentframe().f_back
+            (filename, line_number,
+             function_name, lines, index) = inspect.getframeinfo(previous_frame)
             audit = {
                 "auditID": generate_error_id(),
-                "method_name": method,
-                "message": message,
+                "methodName": function_name,
+                "fileName": filename,
+                "lineNo": line_number,
+                "message": str(message),
                 "timeStamp": eval(str(time.time()).replace('.', '')),
                 "auditType": "ERROR"
             }
-            if entity_id is None:
-                audit["corelationId"] = "CO-ID-NA"
-            else:
-                audit["corelationId"] = entity_id
+            audit_enriched = enrich_entity_details(audit, entity)
+            if audit_enriched is not None:
+                audit = audit_enriched
             if exc is not None:
                 audit["cause"] = str(exc)
             index_audit_to_es(audit)
         except Exception as e:
-            log.exception("Anuvaad Auditor ERROR failed.")
+            log.exception("Anuvaad Auditor ERROR failed.", e)
             return None
 
 # Enriches the audit object with entity related data
