@@ -27,7 +27,6 @@ def post_error(code, message, cause):
         if cause is not None:
             error["cause"] = str(cause)
         index_error_to_es(error)
-        log_info("Error posted to the es index.", None)
         return error
     except Exception as e:
         log_exception("Error Handler Failed.", None, e)
@@ -63,9 +62,7 @@ def post_error_wf(code, message, entity, cause):
             error["metadata"] = entity["metadata"]
 
         push_to_queue(error, anu_etl_wf_error_topic)
-        log_info("Error pushed to the wf error topic.", None)
         index_error_to_es(error)
-        log_info("Error posted to the es index.", None)
         return error
     except Exception as e:
         log_exception("Error Handler WF Failed.", None, e)
