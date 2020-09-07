@@ -1,6 +1,6 @@
 import os
 
-anu_etl_wf_error_topic = os.environ.get('ANU_DP_WF_ERROR_TOPIC', 'anuvaad-etl-wf-errors')
+anu_etl_wf_error_topic = os.environ.get('ANUVAAD_ETL_WF_ERROR_TOPIC', 'anuvaad-etl-wf-errors')
 es_url = os.environ.get('ANUVAAD_DP_ES_URL', 'localhost')
 
 es_core_error_index = os.environ.get('ANUVAAD_DP_ES_CORE_ERROR_INDEX', 'anuvaad-dp-errors-core-v1')
