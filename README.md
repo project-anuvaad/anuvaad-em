@@ -14,7 +14,7 @@ pip install anuvaad-auditor==0.1.0
 ```
 Current Version:
 ```bash
-anuvaad-auditor==0.1.0
+anuvaad-auditor==0.1.1
 ```
 
 ## Logging/Auditing.
