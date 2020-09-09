@@ -13,9 +13,10 @@ from .config import is_debug_enabled
 from .config import is_error_enabled
 from .config import is_exc_enabled
 
+
 # Method to log and index INFO level logs
 # message: The message to be logged
-# entity_id: Any ID that can be used for co-relation. jobID in case of wf, unique Ids in case of normal flow.
+# entity: Input object as received from WFM, enriched with taskID
 def log_info(message, entity):
     log.info(message)
     if es_url != 'localhost' and is_info_enabled:
@@ -43,7 +44,7 @@ def log_info(message, entity):
 
 # Method to log and index DEBUG level logs
 # message: The message to be logged
-# entity_id: Any ID that can be used for co-relation. jobID in case of wf, unique Ids in case of normal flow.
+# entity: Input object as received from WFM, enriched with taskID
 def log_debug(message, entity):
     log.debug(message)
     if es_url != 'localhost' and is_debug_enabled:
@@ -69,10 +70,9 @@ def log_debug(message, entity):
             return None
 
 
-
 # Method to log and index EXCEPTION level logs
 # message: The message to be logged
-# entity_id: Any ID that can be used for co-relation. jobID in case of wf, unique Ids in case of normal flow.
+# entity: Input object as received from WFM, enriched with taskID.
 # exc: Exception object
 def log_exception(message, entity, exc):
     log.exception(message)
@@ -101,10 +101,9 @@ def log_exception(message, entity, exc):
             return None
 
 
-
-# Method to log and index EXCEPTION level logs
+# Method to log and index ERROR level logs
 # message: The message to be logged
-# entity_id: Any ID that can be used for co-relation. jobID in case of wf, unique Ids in case of normal flow.
+# entity: Input object as received from WFM, enriched with taskID.
 # exc: Exception object
 def log_error(message, entity, exc):
     log.error(message)
@@ -131,6 +130,7 @@ def log_error(message, entity, exc):
         except Exception as e:
             log.exception("Anuvaad Auditor ERROR failed.", e)
             return None
+
 
 # Enriches the audit object with entity related data
 def enrich_entity_details(audit, entity):

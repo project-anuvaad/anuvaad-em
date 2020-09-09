@@ -15,7 +15,7 @@ log = logging.getLogger('file')
 # Method to standardize and index errors for the core flow
 # code: Any string that uniquely identifies an error
 # message: The error message
-# cause: JSON or String that explains the cause of the error
+# cause: String that explains the cause of the error
 def post_error(code, message, cause):
     try:
         error = {
@@ -39,10 +39,7 @@ def post_error(code, message, cause):
 # code: Any string that uniquely identifies an error
 # message: The error message
 # cause: JSON or String that explains the cause of the error
-# jobID: Unique JOB ID generated for the wf.
-# taskID: Unique TASK ID generated for the current task.
-# state: State of the workflow pertaining to the current task.
-# status: Status of the workflow pertaining to the current task.
+# entity: Input object as received from WFM, enriched with taskID
 def post_error_wf(code, message, entity, cause):
     try:
         error = {

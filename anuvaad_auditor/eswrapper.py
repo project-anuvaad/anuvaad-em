@@ -43,12 +43,11 @@ def index_audit_to_es(index_obj):
         index_obj = add_timestamp_field(index_obj)
         es.index(index=es_audit_index, id=id, body=index_obj)
     except Exception as e:
-        log.exception("Indexing FAILED for errorID: " + index_obj["auditID"], e)
+        log.exception("Indexing FAILED for auditID: " + index_obj["auditID"], e)
 
 
 # Method to generate timestamp in the format es expects per index object.
 def add_timestamp_field(error):
-    #date_format = "%Y-%m-%d'T'%H:%M:%S.%f'Z'"
     epoch = error["timeStamp"]
     epoch_short = eval((str(epoch)[:10]))
     error["@timestamp"] = datetime.fromtimestamp(epoch_short).isoformat()
