@@ -52,17 +52,17 @@ def post_error_wf(code, message, entity, cause):
         }
         if cause is not None:
             error["cause"] = str(cause)
-        if entity["jobID"]:
-            error["jobID"] = entity["jobID"]
-        if entity["taskID"]:
-            error["taskID"] = entity["taskID"]
-        if entity["state"]:
-            error["state"] = entity["state"]
-        if entity["status"]:
-            error["status"] = entity["status"]
-        if entity["metadata"] is not None:
-            error["metadata"] = entity["metadata"]
-
+        if entity is not None:
+            if 'jobID' in entity.keys():
+                error["jobID"] = entity["jobID"]
+            if 'taskID' in entity.keys():
+                error["taskID"] = entity["taskID"]
+            if 'state' in entity.keys():
+                error["state"] = entity["state"]
+            if 'status' in entity.keys():
+                error["status"] = entity["status"]
+            if 'metadata' in entity.keys():
+                error["metadata"] = entity["metadata"]
         if es_url != 'localhost':
             push_to_queue(error, anu_etl_wf_error_topic)
             index_error_to_es(error)
