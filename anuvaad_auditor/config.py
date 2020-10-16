@@ -1,5 +1,7 @@
 import os
 
+kafka_bootstrap_server_host = os.environ.get('KAFKA_BOOTSTRAP_SERVER_HOST', 'localhost:9092')
+
 anu_etl_wf_error_topic = os.environ.get('ANUVAAD_ETL_WF_ERROR_TOPIC', 'anuvaad-etl-wf-errors')
 es_url = os.environ.get('ANUVAAD_DP_ES_URL', 'localhost')
 

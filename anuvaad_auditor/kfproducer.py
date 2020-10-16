@@ -3,16 +3,15 @@ import logging
 
 import os
 from logging.config import dictConfig
-
+from .config import kafka_bootstrap_server_host
 from kafka import KafkaProducer
 
 
 log = logging.getLogger('file')
-cluster_details = os.environ.get('KAFKA_CLUSTER_DETAILS', 'localhost:9092')
 
 
 def instantiate():
-    producer = KafkaProducer(bootstrap_servers=[cluster_details],
+    producer = KafkaProducer(bootstrap_servers=list(str(kafka_bootstrap_server_host).split(",")),
                              api_version=(1, 0, 0),
                              value_serializer=lambda x: json.dumps(x).encode('utf-8'))
     return producer
