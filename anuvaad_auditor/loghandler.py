@@ -30,7 +30,7 @@ def log_info(message, entity):
                 "fileName": filename,
                 "lineNo": line_number,
                 "message": str(message),
-                "timeStamp": eval(str(time.time()).replace('.', '')),
+                "timeStamp": eval(str(time.time()).replace('.', '')[0:13]),
                 "auditType": "INFO"
             }
             audit_enriched = enrich_entity_details(audit, entity)
@@ -58,7 +58,7 @@ def log_debug(message, entity):
                 "fileName": filename,
                 "lineNo": line_number,
                 "message": str(message),
-                "timeStamp": eval(str(time.time()).replace('.', '')),
+                "timeStamp": eval(str(time.time()).replace('.', '')[0:13]),
                 "auditType": "DEBUG"
             }
             audit_enriched = enrich_entity_details(audit, entity)
@@ -87,7 +87,7 @@ def log_exception(message, entity, exc):
                 "fileName": filename,
                 "lineNo": line_number,
                 "message": str(message),
-                "timeStamp": eval(str(time.time()).replace('.', '')),
+                "timeStamp": eval(str(time.time()).replace('.', '')[0:13]),
                 "auditType": "EXCEPTION"
             }
             audit_enriched = enrich_entity_details(audit, entity)
@@ -118,7 +118,7 @@ def log_error(message, entity, exc):
                 "fileName": filename,
                 "lineNo": line_number,
                 "message": str(message),
-                "timeStamp": eval(str(time.time()).replace('.', '')),
+                "timeStamp": eval(str(time.time()).replace('.', '')[0:13]),
                 "auditType": "ERROR"
             }
             audit_enriched = enrich_entity_details(audit, entity)

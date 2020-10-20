@@ -22,7 +22,7 @@ def post_error(code, message, cause):
             "errorID": generate_error_id(),
             "code": code,
             "message": message,
-            "timeStamp": eval(str(time.time()).replace('.', '')),
+            "timeStamp": eval(str(time.time()).replace('.', '')[0:13]),
             "errorType": "core-error"
         }
         if cause is not None:
@@ -46,7 +46,7 @@ def post_error_wf(code, message, entity, cause):
             "errorID": generate_error_id(),
             "code": code,
             "message": message,
-            "timeStamp": eval(str(time.time()).replace('.', '')),
+            "timeStamp": eval(str(time.time()).replace('.', '')[0:13]),
             "status": "FAILED",
             "errorType": "wf-error"
         }
