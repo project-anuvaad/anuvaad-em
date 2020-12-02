@@ -158,10 +158,15 @@ def enrich_entity_details(audit, entity):
                     audit["module"] = metadata["module"]
                 else:
                     audit["module"] = "MOD-NA"
+                if 'requestID' in metadata.keys():
+                    audit["requestID"] = metadata["requestID"]
+                else:
+                    audit["requestID"] = "REQ-ID-NA"
             else:
                 audit["sessionID"] = "SE-ID-NA"
                 audit["userID"] = "USR-ID-NA"
                 audit["module"] = "MOD-NA"
+                audit["requestID"] = "MOD-NA"
         return audit
     except Exception as e:
         log.exception("Exception while enriching with entity!", e)
