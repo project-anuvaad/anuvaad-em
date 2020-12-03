@@ -10,15 +10,14 @@ A python package that has been implemented to abstract out and standardize the p
 
 INSTALLATION:
 ```bash
-pip install anuvaad-auditor==0.1.2
+pip install anuvaad-auditor==0.1.6
 ```
 Versions Available:
 ```bash
+anuvaad-auditor==0.1.6
+anuvaad-auditor==0.1.4
 anuvaad-auditor==0.1.2
 anuvaad-auditor==0.1.1
-anuvaad-auditor==0.1.0
-anuvaad-auditor==0.0.7
-anuvaad-auditor==0.0.3
 ```
 
 ## Logging/Auditing.
